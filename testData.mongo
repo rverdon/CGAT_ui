@@ -1,5 +1,5 @@
-use cgat_test;
-db.auth('cgat', 'ILoveData580');
+use cgat;
+db.auth('cgat', 'ILoveData');
 
 db.annotations.remove();
 db.annotations.insert({

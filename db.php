@@ -86,15 +86,15 @@ function mongoNameSanitize($val) {
 
 function getDB() {
    $username = 'cgat';
-   $password = 'ILoveData580';
+   $password = 'ILoveData';
 
    //TEST
    //$mongo = new Mongo("mongodb://${username}:${password}@localhost/cgat_test");
-   $mongo = new Mongo("mongodb://${username}:${password}@localhost/cgat_test");
+   $mongo = new Mongo("mongodb://${username}:${password}@localhost/cgat");
 
-   //TEST
-   //return $mongo->cgat;
-   return $mongo->cgat_test;
+   
+   return $mongo->cgat;
+   //return $mongo->cgat_test;
 }
 
 function getAnnotation($id) {
@@ -265,7 +265,7 @@ function submitAnnotation($data) {
    $db->contigs->update($contigQuery, $contigUpdate);
 
    // Get the difficulty
-   $exp = $db->contigs->findOne($contigQuery, array('meta.difficulty' => 1))['meta']['difficulty'];
+   //RYAN TODO: $exp = $db->contigs->findOne($contigQuery, array('meta.difficulty' => 1))['meta']['difficulty'];
 
    // remove is from the users incomplete, and add it to the users history
    // Update users' exp
@@ -403,7 +403,7 @@ function getAdministrationInfo($userId) {
    $rtn['in-groups'] = array();
    $rtn['out-groups'] = array();
 
-   $inGroupIds = $db->users->findOne(array('_id' => new MongoId($userId)), array('groups' => 1))['groups'];
+   //RYAN TODO $inGroupIds = $db->users->findOne(array('_id' => new MongoId($userId)), array('groups' => 1))['groups'];
    // Reverse the hash for quick id lookup and when the name is found, hash the name to the id.
    $inGroupNames = array();
    foreach ($inGroupIds as $inGroupId) {
