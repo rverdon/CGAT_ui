@@ -265,7 +265,8 @@ function submitAnnotation($data) {
    $db->contigs->update($contigQuery, $contigUpdate);
 
    // Get the difficulty
-   //RYAN TODO: $exp = $db->contigs->findOne($contigQuery, array('meta.difficulty' => 1))['meta']['difficulty'];
+   $diffArray = $db->contigs->findOne($contigQuery, array('meta.difficulty' => 1));
+   $exp = $diffArray['meta']['difficulty'];
 
    // remove is from the users incomplete, and add it to the users history
    // Update users' exp
@@ -403,7 +404,8 @@ function getAdministrationInfo($userId) {
    $rtn['in-groups'] = array();
    $rtn['out-groups'] = array();
 
-   //RYAN TODO $inGroupIds = $db->users->findOne(array('_id' => new MongoId($userId)), array('groups' => 1))['groups'];
+   $inGroups = $db->users->findOne(array('_id' => new MongoId($userId)), array('groups' => 1));
+   $inGroupIds = $inGroups['groups'];
    // Reverse the hash for quick id lookup and when the name is found, hash the name to the id.
    $inGroupNames = array();
    foreach ($inGroupIds as $inGroupId) {
