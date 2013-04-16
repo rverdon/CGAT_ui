@@ -535,15 +535,14 @@ function getFullGeneInfo($geneName) {
    return $rtn;
 }
 
-function insertContig($userId, $userName, $name, $source, $species, $difficulty, $sequence) {
+function insertContig($userId, $userName, $name, $projectGroup, $difficulty, $sequence) {
    $db = getDB();
 
    $insert = array('expert_annotations' => array(),
                    'isoform_names' => array(),
                    'meta' => array('name' => $name,
                                    'difficulty' => $difficulty,
-                                   'source' => $source,
-                                   'species' => $species,
+                                   'project_group' => $projectGroup,
                                    'status' => 'active',
                                    'uploader' => new MongoId($userId),
                                    'uploader_name' => $userName,

@@ -358,9 +358,8 @@ function uploadManual() {
       url: 'api/upload_contig',
       type: 'POST',
       data: {name: $('#manual-method-name').val(),
-             source: $('#manual-method-source').val(),
+             project_group: $('#manual-method-project-group').val(),
              difficulty: $('#manual-method-difficulty').val(),
-             species: $('#manual-method-species').val(),
              sequence: $('#manual-method-sequence').val()},
       error: function(jqXHR, textStatus, errorThrown) {
          enableErrorConfirmModal('Uploading Contig', 'administration');
@@ -380,9 +379,8 @@ function uploadFasta() {
       url: 'api/upload_contig',
       type: 'POST',
       data: {name: $('#fasta-method-name').val(),
-             source: $('#fasta-method-source').val(),
+             project_group: $('#fasta-method-project-group').val(),
              difficulty: $('#fasta-method-difficulty').val(),
-             species: $('#fasta-method-species').val(),
              sequence: $('#fasta-method-sequence').val()},
       error: function(jqXHR, textStatus, errorThrown) {
          enableErrorConfirmModal('Uploading Contig', 'administration');

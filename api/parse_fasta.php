@@ -21,7 +21,12 @@
 
       $content = file($_FILES["file"]["tmp_name"], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
       if ($content) {
-         $response['contigName'] = preg_replace('/^\>/', '', array_shift($content));
+         $headerInfo = substr(array_shift($content), 1); //Ignore leading >
+         $contigName = substr($headerInfo, 0, strpos($headerInfo, " "));
+         if(strlen($contigName) == 0) {
+            $contigName = $headerInfo; //There wasn't any fancy stuff in the header info just the name
+         }
+         $response['contigName'] = $contigName;
          $response['sequence'] = join($content);
          $response['valid'] = true;
       }

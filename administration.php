@@ -122,18 +122,28 @@
 
                   <div id='fasta-method-details' class='method-details'>
                      <div class='input-align-kids-field'>
-                        <span>Name</span>
+                        <span>Project Name</span>
                         <input type='text' id='fasta-method-name' />
                      </div>
 
                      <div class='input-align-kids-field'>
-                        <span>Source</span>
-                        <input type='text' id='fasta-method-source' />
-                     </div>
-
-                     <div class='input-align-kids-field'>
-                        <span>Species</span>
-                        <input type='text' id='fasta-method-species' />
+                        <span>Project group</span>
+                        <select id ='fasta-method-project-group'>
+                           <option value ='D. ananassae 3L Control'>D. ananassae 3L Control</option>
+                           <option value ='D. ananassae Dot'>D. ananassae Dot</option>
+                           <option value ='D. ananassae Bio 4342'>D. ananassae Bio 4342</option>
+                           <option value ='D. biarmipes Dot'>D. biarmipes Dot</option>
+                           <option value ='D. erecta Dot'>D. erecta Dot</option>
+                           <option value ='D. erecta 3L Control'>D. erecta 3L Control</option>
+                           <option value ='D. erecta 3L Extended'>D. erecta 3L Extended</option>
+                           <option value ='D. erecta 2nd 3L Control'>D. erecta 2nd 3L Control</option>
+                           <option value ='D. mojavensis Dot'>D. mojavensis Dot</option>
+                           <option value ='D. mojavensis 3L Control'>D. mojavensis 3L Control</option>
+                           <option value ='D. virilis Dot'>D. virilis Dot</option>
+                           <option value ='D. virilis Dot Walkthrough'>D. virilis Dot Walkthrough</option>
+                           <option value ='D. grimshawi Dot'>D. grimshawi Dot</option>
+                           <option value ='D. grimshawi Dot (Apr.2010)'>D. grimshawi Dot (Apr.2010)</option>
+                        </select>
                      </div>
 
                      <div class='input-align-kids-field'>
@@ -154,18 +164,28 @@
 
                <div id='manual-method-details' class='method-details'>
                   <div class='input-align-kids-field'>
-                     <span>Name</span>
+                     <span>Project Name</span>
                      <input type='text' id='manual-method-name' />
                   </div>
 
                   <div class='input-align-kids-field'>
-                     <span>Source</span>
-                     <input type='text' id='manual-method-source' />
-                  </div>
-
-                  <div class='input-align-kids-field'>
-                     <span>Species</span>
-                     <input type='text' id='manual-method-species' />
+                     <span>Project group</span>
+                        <select id ='manual-method-project-group'>
+                           <option value ='D. ananassae 3L Control'>D. ananassae 3L Control</option>
+                           <option value ='D. ananassae Dot'>D. ananassae Dot</option>
+                           <option value ='D. ananassae Bio 4342'>D. ananassae Bio 4342</option>
+                           <option value ='D. biarmipes Dot'>D. biarmipes Dot</option>
+                           <option value ='D. erecta Dot'>D. erecta Dot</option>
+                           <option value ='D. erecta 3L Control'>D. erecta 3L Control</option>
+                           <option value ='D. erecta 3L Extended'>D. erecta 3L Extended</option>
+                           <option value ='D. erecta 2nd 3L Control'>D. erecta 2nd 3L Control</option>
+                           <option value ='D. mojavensis Dot'>D. mojavensis Dot</option>
+                           <option value ='D. mojavensis 3L Control'>D. mojavensis 3L Control</option>
+                           <option value ='D. virilis Dot'>D. virilis Dot</option>
+                           <option value ='D. virilis Dot Walkthrough'>D. virilis Dot Walkthrough</option>
+                           <option value ='D. grimshawi Dot'>D. grimshawi Dot</option>
+                           <option value ='D. grimshawi Dot (Apr.2010)'>D. grimshawi Dot (Apr.2010)</option>
+                        </select>
                   </div>
 
                   <div class='input-align-kids-field'>

@@ -70,8 +70,7 @@ db.contigs.insert({
    "meta" : {
       "difficulty" : 2,
       "name" : "contig1",
-      "source" : "GEP Wustl",
-      "species" : "Drosophila erecta",
+      "project_group" : "D. erecta Dot",
       "status" : "active",
       "upload_date" : ISODate("2012-11-09T04:52:29.266Z"),
       "uploader" : ObjectId("000000000000000000000003"),

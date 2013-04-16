@@ -3,10 +3,10 @@
 
    require_once '../db.php';
 
-   if (!isset($_POST['name']) || !isset($_POST['source']) ||
-       !isset($_POST['difficulty']) || !isset($_POST['species']) ||
+   if (!isset($_POST['name']) || 
+       !isset($_POST['difficulty']) || !isset($_POST['project_group']) ||
        !isset($_POST['sequence'])) {
-      die('group name and desc must be present');
+      die('project group, name, and sequence must be present');
       return;
    }
 
@@ -19,8 +19,7 @@
    insertContig(mongoIdSanitize($_SESSION['userId']),
                 mongoUserSanitize($_SESSION['userName']),
                 mongoNameSanitize($_POST['name']),
-                mongoNameSanitize($_POST['source']),
-                mongoNameSanitize($_POST['species']),
+                mongoNameSanitize($_POST['project_group']),
                 mongoNumberSanitize($_POST['difficulty']),
                 mongoSequenceSanitize($_POST['sequence']));
 ?>
