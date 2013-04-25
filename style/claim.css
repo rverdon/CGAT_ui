@@ -1,0 +1,157 @@
+#bio-info {
+   overflow: hidden;
+}
+
+#profile-user-pic-area {
+   background: #395668;
+   width: 200px;
+   height: 200px;
+   padding: 10px;
+   border-radius: 5px;
+   box-shadow: 2px 2px 2px #888;
+   display: inline-block;
+   float: left;
+   margin-right: 20px;
+}
+
+#profile-user-info-area {
+   display: inline-block;
+   float: right;
+   background: #395668;
+   width: 250px;
+   height: 200px;
+   padding: 10px;
+   border-radius: 5px;
+   box-shadow: 2px 2px 2px #888;
+}
+
+#profile-user-info-area,
+#profile-user-stats {
+   color: #E2E2E2;
+   text-shadow: 1px 1px black;
+   font-size: 24px;
+   text-align: center;
+}
+
+#profile-user-pic {
+   background: white;
+   border-radius: 5px;
+}
+
+#profile-user-stats {
+   background: #395668;
+   width: 450px;
+   height: 200px;
+   padding: 10px;
+   border-radius: 5px;
+   box-shadow: 2px 2px 2px #888;
+   display: inline-block;
+   float: left;
+}
+
+.profile-entry {
+   border-radius: 10px;
+   box-shadow: 1px 1px 2px #888;
+   margin-top: 10px;
+   padding: 10px;
+   color: black;
+   text-shadow: initial;
+}
+
+.profile-entry span {
+   margin-right: 20px;
+}
+
+.notification {
+   background: #00FF3D;
+}
+
+.partial {
+   background: #E1EE48;
+}
+
+.recent {
+   background: #CC9860;
+}
+
+.cancel-button,
+.annotate-button {
+   position: relative;
+   cursor: pointer;
+   border: 1px solid black;
+   background-repeat: no-repeat;
+   border-radius: 5px;
+   box-shadow: 1px 1px 2px;
+   padding: 2px;
+   background-position-x: 2px;
+   background-position-y: 2px;
+   display: inline;
+   float: right;
+}
+
+.cancel-button {
+   height: 20px;
+   width: 20px;
+   background-image: url('../images/cancel.png');
+   margin-left: 30px;
+   margin-right: 10px;
+}
+
+.annotate-button {
+   height: 20px;
+   width: 63px;
+   background-image: url('../images/annotate.png');
+}
+
+.annotate-button:before,
+.cancel-button:before {
+   font-size: 10px;
+   position: absolute;
+   width: 100%;
+   text-align: center;
+   top: -10px;
+   left: 0;
+}
+
+.annotation-cancel-button:before {
+   content: 'Dismiss';
+   left: -7px;
+}
+
+.group-cancel-button:before {
+   content: 'Leave';
+   left: -4px;
+}
+
+.annotate-button:before {
+   content: 'Annotate';
+}
+
+/* OVERRIDES: .annotate-button:before */
+.history-annotate-button:before {
+   content: 'View';
+}
+
+.annotate-button:hover,
+.cancel-button:hover {
+   background-color: lightSteelBlue;
+}
+
+.annotate-button:active,
+.cancel-button:active {
+   background-color: #395668;
+}
+
+.group-tag {
+   background: #DEB3E4;
+   padding: 10px;
+   border-radius: 10px;
+   box-shadow: 2px 2px 2px #888;
+   display: inline-block;
+   margin-left: 20px;
+}
+
+.group-tag a {
+   text-decoration: none;
+   color: #382D18;
+}
