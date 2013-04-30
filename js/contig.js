@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
             for (var id in data.info.expandedAnnotations[geneName]) {
                var annotation = makeInlineAnnotation(data.info.expandedAnnotations[geneName][id]);
 
-               annotations += annotation;
+               annotations += annotation + "<br />";
                if (data.info.expandedAnnotations[geneName][id].expert) {
-                  expertAnnotations += annotation;
+                  expertAnnotations += annotation + "<br />";
                }
             }
          }
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
          // Place the associated genes.
          var genes = '';
          for (var geneName in data.info.expandedAnnotations) {
-            genes += "<a href='/gene?name=" + geneName + "'>" + geneName + "</a>";
+            genes += "<a href='/gene?name=" + geneName + "'>" + geneName + "</a><br />";
          }
          $('#genes-area').html(genes);
 
