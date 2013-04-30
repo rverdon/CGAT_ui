@@ -6,6 +6,13 @@
 ?>
 
 <div id='content' class='top-level-area'>
+   
+   <button id='feedback-button' class='second-level-area second-level-button full-second-level-button'
+           onclick='getFeedback();'>
+      Get Feedback
+   </button>
+
+
 
    <div id='annotation-info' class='second-level-area'>
       <h2 onclick='toggleCollapse("annotation-info-collapse-button", "annotation-info-area");'>

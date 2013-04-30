@@ -69,3 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
       }
    });
 });
+
+function getFeedback() {
+   window.location.href = 'feedback?id=' + window.params.id;
+}
+
