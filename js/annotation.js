@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
    window.cgat.geneEnd = 0;
    window.cgat.contigId = null;
    window.cgat.userId = null;
+   window.cgat.expert = false;
 
    // Block interation until the info is loaded.
    enableLoadingModal('annotation');
@@ -85,9 +86,6 @@ document.addEventListener('DOMContentLoaded', function () {
          $('#annotation-start').val(window.cgat.geneStart);
          updateBoundingMarkers();
 
-         // Set the value in #nucleotides-per-window.
-         document.getElementById('nucleotides-per-window').value = window.cgat.nucleoditesPerWindow;
-
          updateDnaSelection(0);
 
          // Interation enabled.
@@ -104,24 +102,6 @@ document.addEventListener('DOMContentLoaded', function () {
             mouseEvent.offsetX - Math.floor(selector.offsetWidth / 2);
    });
 
-   // Change the size of the slider with the number box.
-   document.getElementById('nucleotides-per-window').addEventListener('change', function(test, test2) {
-      var inputBox = document.getElementById('nucleotides-per-window');
-      var newValue = parseInt(inputBox.value, 10);
-
-      // Validate the field. Must be > 0 and <= dna.length.
-      if (newValue < 1 || newValue > window.cgat.dna.length) {
-         // Reset the field to the previous value.
-         inputBox.value = window.cgat.nucleoditesPerWindow;
-         validationError('Must be between 1 and ' + window.cgat.dna.length, 'nucleotides-per-window-span');
-         return;
-      }
-      clearValidationError('nucleotides-per-window-span');
-
-      window.cgat.nucleoditesPerWindow = newValue;
-      updateDnaSelection(document.getElementById('dna-selection-draggable').offsetLeft);
-   });
-
    // Change the title of the page with the gene name.
    document.getElementById('annotation-name').addEventListener('change', function() {
       var newName = document.getElementById('annotation-name').value;
@@ -133,6 +113,10 @@ document.addEventListener('DOMContentLoaded', function () {
    document.getElementById('annotation-rc').addEventListener('change', function() {
       window.cgat.reverseComplement = document.getElementById('annotation-rc').checked;
       updateDnaSelection(document.getElementById('dna-selection-draggable').offsetLeft);
+   });
+
+   document.getElementById('annotation-expert').addEventListener('change', function() {
+      window.cgat.expert = document.getElementById('annotation-expert').checked;
    });
 
    // Validate and update start/end of gene.
@@ -521,6 +505,7 @@ function collectAnnotationData() {
    data.geneName = window.cgat.geneName;
    data.contigId = window.cgat.contigId;
    data.userId = window.cgat.userId;
+   data.expert = window.cgat.expert;
 
    data.exons = [];
    for (var key in window.cgat.exons) {

@@ -39,13 +39,13 @@
             <span>Gene Start: </span>
             <input type='number' id='annotation-start' value=0 />
          </div>
-         <div id='annotation-end-area' class='annotation-data annotation-data-right'>
+         <div class='annotation-data annotation-data-right'>
+            <span>Reference Annotation: </span>
+            <input type='checkbox' id='annotation-expert' />
+         </div>
+         <div id='annotation-end-area' class='annotation-data annotation-data-left'>
             <span>Gene End: </span>
             <input type='number' id='annotation-end' value=0 />
-         </div>
-         <div class='annotation-data annotation-data-left'>
-            <span id='nucleotides-per-window-span'>Nucleotides Per Window: </span>
-            <input type='number' id='nucleotides-per-window' />
          </div>
          <div class='annotation-data annotation-data-right'>
          </div>
@@ -66,7 +66,7 @@
       <div id='gene-diagram' class='collapsing-area'></div>
    </div>
 
-   <div class='dna-closeup second-level-area'>
+   <div class='dna-closeup second-level-area' style="display:none">
       <h2 onclick='toggleCollapse("standard-collapse-button", "standard-sequence");'>
          <div class='collapse-button collapse-on' id='standard-collapse-button'></div>
          Sequence And Translation

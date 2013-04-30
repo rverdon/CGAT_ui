@@ -11,6 +11,7 @@ function annotationDataSanitize($data) {
    $cleanData['start'] = intval(preg_replace('/\D/', '', $data['start']));
    $cleanData['end'] = intval(preg_replace('/\D/', '', $data['end']));
    $cleanData['reverseComplement'] = $data['reverseComplement'] === 'true';
+   $cleanData['expert'] = $data['expert'] === 'true';
    // TODO(eriq): Find out the possibilities.
    $cleanData['geneName'] = $data['geneName'];
    $cleanData['contigId'] = mongoIdSanitize($data['contigId']);
@@ -232,6 +233,7 @@ function updateAnnotation($data, $partialStatus) {
    $update = array('$set' => array('start' => $data['start'],
                                    'end' => $data['end'],
                                    'reverse_complement' => $data['reverseComplement'],
+                                   'expert' => $data['expert'],
                                    'isoform_name' => $data['geneName'],
                                    'exons' => $data['exons'],
                                    'meta.last_modified' => new MongoDate(),
@@ -292,9 +294,29 @@ function submitAnnotation($data) {
    $userPush = array('$push' => array('history' => array('anno_id' => new MongoId($data['annotationId']),
                                                          'meta' => array('date' => new MongoDate(),
                                                                          'experience_gained' => $exp))));
+   
    $db->users->update($userQuery, $userPull);
    $db->users->update($userQuery, $userInc);
    $db->users->update($userQuery, $userPush);
+
+   
+   // Get the users role
+   $userRoleArray = $db->users->findOne($userQuery, array('meta.role' => 1));
+   $role = $userRoleArray['meta']['role'];
+   // If the user is an expert or admin
+   if ($role === 'Expert' || $role === 'Admin') {
+      // Check if the annotation is being submitted as a reference
+      if ($data['expert'] === 'true') {
+         // Update the contig to have the reference id
+         $contigExpertUpdate = array('$addToSet' => array('expert_annotations' => new MongoId($data['annotationId'])));
+         $db->contigs->update($contigQuery, $contigExpertUpdate);
+      }
+   }
+   else {
+      //Force the expert field to be false
+      $data['expert'] = 'false';
+   }
+
 
    // Update annotation
    updateAnnotation($data, false);
