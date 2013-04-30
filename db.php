@@ -279,7 +279,7 @@ function submitAnnotation($data) {
 
    // Update the contig first
    $contigQuery = array('_id' => new MongoId($data['contigId']));
-   $contigUpdate = array('$push' => array("isoform_name." . $data['geneName'] => new MongoId($data['annotationId'])));
+   $contigUpdate = array('$push' => array("isoform_names." . $data['geneName'] => new MongoId($data['annotationId'])));
    $db->contigs->update($contigQuery, $contigUpdate);
 
    // Get the difficulty
@@ -308,7 +308,7 @@ function submitAnnotation($data) {
       // Check if the annotation is being submitted as a reference
       if ($data['expert'] === 'true') {
          // Update the contig to have the reference id
-         $contigExpertUpdate = array('$addToSet' => array('expert_annotations' => new MongoId($data['annotationId'])));
+         $contigExpertUpdate = array('$push' => array('expert_annotations' => array(new MongoId($data['annotationId']))));
          $db->contigs->update($contigQuery, $contigExpertUpdate);
       }
    }
@@ -327,8 +327,8 @@ function updateContigIsoformList($contigId, $annotationId, $oldName, $newName) {
    $db = getDB();
 
    $query = array('_id' => new MongoId($contigId));
-   $update = array('$pull' => array("isoform_name.${oldName}" => new MongoId($annotationId)),
-                   '$push' => array("isoform_name.${newName}" => new MongoId($annotationId)));
+   $update = array('$pull' => array("isoform_names.${oldName}" => new MongoId($annotationId)),
+                   '$push' => array("isoform_names.${newName}" => new MongoId($annotationId)));
    $db->contigs->update($query, $update);
 }
 
