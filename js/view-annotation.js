@@ -29,6 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
                            data.annotation.isoform_name + "</span><br />";
          annotationInfo += "<label>Reverse Complement: </label><span>" +
                            data.annotation.reverse_complement + "</span><br />";
+         annotationInfo += "<label>Reference Annotation: </label><span>" +
+                           data.annotation.expert + "</span><br />";
          annotationInfo += "<label>Gene Start: </label><span>" +
                            data.annotation.start + "</span><br />";
          annotationInfo += "<label>Gene End: </label><span>" +
@@ -58,8 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
          var contigInfo = '';
          contigInfo += "<label>Contig Name: </label><span>" + data.contig.meta.name + "</span><br />";
          contigInfo += "<label>Difficulty: </label><span>" + data.contig.meta.difficulty + "</span><br />";
-         contigInfo += "<label>Species: </label><span>" + data.contig.meta.species + "</span><br />";
-         contigInfo += "<label>Source: </label><span>" + data.contig.meta.source + "</span><br />";
+         contigInfo += "<label>Project: </label><span>" + data.contig.meta.project_group + "</span><br />";
          contigInfo += "<label>Upload Date: </label><span>" + data.contig.meta.upload_date.sec + "</span><br />";
          contigInfo += "<label>Uploader: </label><span>" + data.contig.meta.uploader_name + "</span>";
          $('#contig-info-area').html(contigInfo);
