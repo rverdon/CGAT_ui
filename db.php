@@ -113,6 +113,22 @@ function getContig($id, $fields = array()) {
    return $contigs->findOne($query, $fields);
 }
 
+function getContigsInProjectGroup($projectGroup) {
+   $db = getDB();
+   $contigs = $db->contigs;
+   
+   $fields = array('_id' => 1, 'meta.name' => 1, 'meta.project_group' => 1, 'meta.difficulty' => 1); 
+   $query = array("meta.project_group" => $projectGroup, "meta.status" => "active");
+
+   $cursor = $contigs->find($query, $fields);
+
+   $rtn['contigs'] = array();
+   foreach ($cursor as $doc) {
+      $rtn['contigs'][] = $doc;
+   }
+   return $rtn;
+}
+
 function getContigMeta($id) {
    return getContig($id, array('meta' => 1));
 }

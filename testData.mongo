@@ -71,7 +71,7 @@ db.contigs.insert({
       "difficulty" : 2,
       "name" : "contig1",
       "project_group" : "D. erecta Dot",
-      "status" : "active",
+      "status" : "testdata",
       "upload_date" : ISODate("2012-11-09T04:52:29.266Z"),
       "uploader" : ObjectId("000000000000000000000003"),
       "uploader_name" : "Bob"
