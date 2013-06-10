@@ -2,7 +2,7 @@
    require_once('header.php');
    makeHeader('Feedback', '',
               array(),
-              array(''));
+              array('feedback.js'));
 ?>
 
 <div id='content' class='top-level-area'>
@@ -12,7 +12,7 @@
          Reference Annotation Feedback         
       </h2>
       <div id='expert-feedback-area' class='collapsing-area'>
-         <span>0% match with 10 reference annotations. </span>
+         <span id='expert-results'> text </span>
       </div>
    </div>
 
@@ -22,7 +22,7 @@
          Community Annotation Feedback 
       </h2>
       <div id='feedback-area' class='collapsing-area'>
-         <span>99% match with 9351 reference annotations. </span> 
+         <span id='community-results'> text </span>
       </div>
    </div>
 

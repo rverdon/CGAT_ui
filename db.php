@@ -589,4 +589,58 @@ function insertContig($userId, $userName, $name, $projectGroup, $difficulty, $se
    $db->contigs->insert($insert);
 }
 
+function getFeedback($id) {
+   $db = getDB();
+   $rtn = array();
+   $expert_total = 0;
+   $community_total = 0;
+   $expert_correct = 0;
+   $community_correct = 0;
+
+   $annotation = $db->annotations->findOne(array('_id' => new MongoId($id)), array('meta' => 0));
+   $contig = $db->contigs->findOne(array('_id' => $annotation['contig_id']), array('isoform_names' => 1));
+   $cursor = $db->annotations->find(array('_id' => array('$in' => $contig['isoform_names'][$annotation['isoform_name']])));
+   foreach ($cursor as $anno) {
+      $good = false;
+      if(count($anno['exons']) == count($annotation['exons']) and
+        $anno['start'] == $annotation['start'] and
+        $anno['end'] == $annotation['end'] and
+        $anno['partial'] === false) {
+        $good = true;
+      /*  $annotation_keys = array_keys($annotation['exons']);
+        foreach ($anno['exons'] as $exon) {
+           if($exon['start'] != $annotation['exons']][$annotation_keys[0]] or
+              $exon['end'] != $annotation['exons'][$annotation_keys[1]]) {
+              $good = false;
+           }
+        }*/
+        if(array_diff($anno['exons'], $annotation['exons'])) {
+           $good = false;
+        }
+     }
+
+     if ($anno['expert'] === true) {
+        $expert_total = $expert_total + 1;
+        if($good) {
+           $expert_correct = $expert_correct + 1;
+        }
+     } else {
+        $community_total = $community_total + 1;
+        if($good) {
+           $community_correct = $community_correct + 1;
+        }
+     }
+   }
+ 
+   if($expert_total != 0) {
+      $rtn['expert_feedback'] = ($expert_correct / $expert_total) * 100;
+   }
+   $rtn['expert_total'] = $expert_total;
+   if ($community_total != 0) {
+      $rtn['community_feedback'] = ($community_correct / $community_total) * 100;
+   }
+   $rtn['community_total'] = $community_total;
+   return $rtn;
+}
+
 ?>
