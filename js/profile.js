@@ -143,8 +143,7 @@ function makeNotification(notification, userId) {
    return "<div class='notification profile-entry' id='notification-" + notificationId + "'>" +
           "<span>Contig: <a href='contig?id=" + notification.contig_meta['_id']['$id'] + "'>" +
                 notification.contig_meta.meta.name + "</a></span>" +
-          "<span>Species: <a href='search?species=" + notification.contig_meta.meta.species + "'>" +
-                notification.contig_meta.meta.species + "</a></span>" +
+          "<span>Project Group: " + notification.contig_meta.meta.project_group + "</span>" +
           "<span>Difficulty: " + notification.contig_meta.meta.difficulty + "</span>" +
           "<div class='cancel-button annotation-cancel-button' onclick='cancelNotification(\"" + notificationId + "\");'></div>" +
           "<div class='annotate-button' onclick='createAnnotation(\"" + notificationId +
