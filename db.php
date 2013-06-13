@@ -244,6 +244,7 @@ function updateAnnotation($data, $partialStatus) {
    }
 
    $db->annotations->update($query, $update);
+   $db->contigs->update(array('_id' => new MongoId($data['contigId'])),array('$addToSet' => array("isoform_names." . $data['geneName'] => new MongoId($data['annotationId']))));
 }
 
 function removeNotificationGivenContig($userId, $contigId) {
@@ -425,7 +426,11 @@ function attemptRegistration($user, $hash, $firstName, $lastName, $email, &$erro
                                    'exp' => 0,
                                    'level' => 1,
                                    'salt' => $salt,
-                                   'pass_hash' => $finalHash));
+                                   'pass_hash' => $finalHash),
+                    'tasks' => array(),
+                    'incomplete_annotations' => array(),
+                    'groups' => array(),
+                    'history' => array());
    $db->users->insert($insert);
 
    // Set session data
@@ -602,32 +607,27 @@ function getFeedback($id) {
    $cursor = $db->annotations->find(array('_id' => array('$in' => $contig['isoform_names'][$annotation['isoform_name']])));
    foreach ($cursor as $anno) {
       $good = false;
-      if(count($anno['exons']) == count($annotation['exons']) and
-        $anno['start'] == $annotation['start'] and
-        $anno['end'] == $annotation['end'] and
-        $anno['partial'] === false) {
-        $good = true;
-      /*  $annotation_keys = array_keys($annotation['exons']);
-        foreach ($anno['exons'] as $exon) {
-           if($exon['start'] != $annotation['exons']][$annotation_keys[0]] or
-              $exon['end'] != $annotation['exons'][$annotation_keys[1]]) {
+      if($anno['_id'] != $annotation['_id']) {
+        if(count($anno['exons']) == count($annotation['exons']) and
+           $anno['start'] == $annotation['start'] and
+           $anno['end'] == $annotation['end'] and
+           $anno['partial'] === false) {
+           $good = true;
+           if(array_diff($anno['exons'], $annotation['exons'])) {
               $good = false;
            }
-        }*/
-        if(array_diff($anno['exons'], $annotation['exons'])) {
-           $good = false;
         }
-     }
 
-     if ($anno['expert'] === true) {
-        $expert_total = $expert_total + 1;
-        if($good) {
-           $expert_correct = $expert_correct + 1;
-        }
-     } else {
-        $community_total = $community_total + 1;
-        if($good) {
-           $community_correct = $community_correct + 1;
+        if ($anno['expert'] === true) {
+           $expert_total = $expert_total + 1;
+           if($good) {
+              $expert_correct = $expert_correct + 1;
+           }
+        } else {
+           $community_total = $community_total + 1;
+           if($good) {
+              $community_correct = $community_correct + 1;
+           }
         }
      }
    }
