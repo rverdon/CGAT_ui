@@ -582,7 +582,6 @@ function insertContig($userId, $userName, $name, $projectGroup, $difficulty, $se
    $db = getDB();
 
    $insert = array('expert_annotations' => array(),
-                   'isoform_names' => array(),
                    'meta' => array('name' => $name,
                                    'difficulty' => $difficulty,
                                    'project_group' => $projectGroup,
