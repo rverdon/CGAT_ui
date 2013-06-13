@@ -256,10 +256,8 @@ function addExon(start, end) {
 function addExonFromButton() {
    var start = document.getElementById('add-exon-start').value;
    var end = document.getElementById('add-exon-end').value;
-   //console.log("START: " + start);
-   //console.log("END: " + end);
 
-   if (!startEndValidate(start, end, 'add-exon-collapse-area')) {
+   if (!startEndValidate(Number(start), Number(end), 'add-exon-collapse-area')) {
       return;
    }
 
