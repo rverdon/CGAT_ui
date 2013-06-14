@@ -13,10 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
          var expertOutput = "No reference annotation to compare to!";
          var communityOutput = "No community annotations to compare to!";
          if(data.expert_total != 0) {
-            expertOutput = data.expert_feedback + "% match with " + data.expert_total + " reference annotations.";
+            expertOutput = "Matches " + parseFloat(data.expert_feedback).toFixed(1) + "% of the " + data.expert_total + " reference annotations.";
          }
          if(data.community_total != 0) {
-            communityOutput = data.community_feedback + "% match with " +data.community_total + " community annotations.";
+            communityOutput = "Matches " + parseFloat(data.community_feedback).toFixed(1) + "% of the " +data.community_total + " community annotations.";
          }
          document.getElementById('expert-results').innerHTML = expertOutput;
          document.getElementById('community-results').innerHTML = communityOutput;

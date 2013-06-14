@@ -27,24 +27,24 @@
       </h2>
       <div id='annotation-data-area' class='collapsing-area'>
          <div id='gene-name-area' class='annotation-data annotation-data-left'>
-            <span>Gene Name: </span>
+            <span>Gene name-isoform: </span>
             <select id='annotation-name'>
             </select>
          </div>
          <div class='annotation-data annotation-data-right'>
-            <span>Reverse Complement: </span>
+            <span>Reverse strand: </span>
             <input type='checkbox' id='annotation-rc' />
          </div>
          <div id='annotation-start-area' class='annotation-data annotation-data-left'>
-            <span>Gene Start: </span>
+            <span>CDS beginning: </span>
             <input type='number' id='annotation-start' value=0 />
          </div>
          <div class='annotation-data annotation-data-right'>
-            <span>Reference Annotation: </span>
+            <span>Reference annotation: </span>
             <input type='checkbox' id='annotation-expert' />
          </div>
          <div id='annotation-end-area' class='annotation-data annotation-data-left'>
-            <span>Gene End: </span>
+            <span>CDS end: </span>
             <input type='number' id='annotation-end' value=0 />
          </div>
          <div class='annotation-data annotation-data-right'>
